@@ -1,4 +1,4 @@
-package com.antoshkaplus.ant.dialog;
+package com.antoshkaplus.fly.dialog;
 
 import android.app.AlertDialog;
 import android.app.Dialog;
