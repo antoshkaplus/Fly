@@ -10,6 +10,7 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.widget.ArrayAdapter;
 import android.widget.ListAdapter;
 import android.widget.SearchView;
@@ -24,22 +25,20 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.net.URI;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 /**
  * Created by antoshkaplus on 6/13/16.
  */
-public class ListSearchActivity extends ListActivity {
+public class ListSearchActivity extends ListActivity implements SearchView.OnQueryTextListener {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         try {
             String[] words = Util.readWords(this);
-            ListAdapter adapter = new ArrayAdapter<String>(
-                    this,
-                    android.R.layout.simple_list_item_1,
-                    words);
+            ListAdapter adapter = new ListSearchAdapter(this, Arrays.asList(words));
 
             setListAdapter(adapter);
         } catch (IOException e) {
@@ -58,7 +57,12 @@ public class ListSearchActivity extends ListActivity {
         SearchView searchView = (SearchView) menu.findItem(R.id.search).getActionView();
         // Assumes current activity is the searchable activity
         searchView.setSearchableInfo(searchManager.getSearchableInfo(getComponentName()));
+        searchView.setSubmitButtonEnabled(true);
         searchView.setIconifiedByDefault(false); // Do not iconify the widget; expand it by default
+
+        SearchView filterView = (SearchView) menu.findItem(R.id.filter).getActionView();
+        filterView.setSubmitButtonEnabled(false);
+        filterView.setOnQueryTextListener(this);
 
         return true;
     }
@@ -87,4 +91,18 @@ public class ListSearchActivity extends ListActivity {
             getListView().setSelection(position);
         }
     }
+
+    @Override
+    public boolean onQueryTextChange(String s) {
+        ListSearchAdapter adapter = (ListSearchAdapter) getListAdapter();
+        adapter.getFilter().filter(s);
+        return true;
+    }
+
+    @Override
+    public boolean onQueryTextSubmit(String s) {
+        return false;
+    }
+
+
 }
