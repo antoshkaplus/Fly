@@ -1,4 +1,4 @@
-package com.antoshkaplus.fly;
+package com.antoshkaplus.bee;
 
 /**
  * Created by antoshkaplus on 7/3/16.
