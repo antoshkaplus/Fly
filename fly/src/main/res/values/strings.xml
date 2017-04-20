@@ -12,7 +12,8 @@
     <string name="dialog__sync_failure__text">Synchronization failed</string>
 
     <string name="ok">OK</string>
-
+    <string name="item">Item</string>
+    <string name="task">Task</string>
 
 
 </resources>

@@ -2,4 +2,6 @@
     <string name="app_name">Fly</string>
     <string name="main_activity__list_search">List Search</string>
     <string name="list_search__hint">Enter word part</string>
+    <string name="main_activity__add_item">Add Item</string>
+    <string name="main_activity__alert_dialog">Alert Dialog</string>
 </resources>

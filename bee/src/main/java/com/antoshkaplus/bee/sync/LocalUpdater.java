@@ -4,7 +4,7 @@ package com.antoshkaplus.bee.sync;
  * Created by antoshkaplus on 3/14/17.
  */
 
-public class LocalUpdater<RemoteUpdates> {
+public abstract class LocalUpdater<RemoteUpdates> {
 
     public void update() {
 
@@ -23,25 +23,10 @@ public class LocalUpdater<RemoteUpdates> {
         setLastSyncedVerstion(remoteVesion);
     }
 
-    private void updateLocal(RemoteUpdates updates) {
-    }
-
-    private RemoteUpdates fetchRemoteUpdates() {
-        throw new RuntimeException();
-    }
-
-    private int fetchRemoteVersion() {
-        throw new RuntimeException();
-    }
-
-    private void prepare() {
-    }
-
-    public int getLastSyncedVersion() {
-        return 0;
-    }
-
-    public void setLastSyncedVerstion(int lastSyncedVerstion) {
-        lastSyncedVerstion = 0;
-    }
+    protected abstract void updateLocal(RemoteUpdates updates);
+    protected abstract RemoteUpdates fetchRemoteUpdates();
+    protected abstract int fetchRemoteVersion();
+    protected abstract void prepare();
+    protected abstract int getLastSyncedVersion();
+    protected abstract void setLastSyncedVerstion(int lastSyncedVerstion);
 }

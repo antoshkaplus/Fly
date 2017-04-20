@@ -11,6 +11,17 @@
         android:onClick="showListSearch"
         />
 
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/main_activity__add_item"
+        android:onClick="showAddItemDialog"
+        />
 
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/main_activity__alert_dialog"
+        android:onClick="showAlertDialog"/>
 
 </LinearLayout>

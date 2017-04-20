@@ -2,10 +2,10 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/Fly.iml" filepath="$PROJECT_DIR$/Fly.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
       <module fileurl="file://$PROJECT_DIR$/bee/bee.iml" filepath="$PROJECT_DIR$/bee/bee.iml" />
-      <module fileurl="file://$PROJECT_DIR$/fly/fly.iml" filepath="$PROJECT_DIR$/fly/fly.iml" />
+      <module fileurl="file://$PROJECT_DIR$/fly.iml" filepath="$PROJECT_DIR$/fly.iml" />
+      <module fileurl="file://$PROJECT_DIR$/fly/fly-fly.iml" filepath="$PROJECT_DIR$/fly/fly-fly.iml" />
     </modules>
   </component>
 </project>

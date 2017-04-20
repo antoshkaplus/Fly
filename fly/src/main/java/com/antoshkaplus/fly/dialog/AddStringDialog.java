@@ -83,6 +83,7 @@ public class AddStringDialog extends RetainedDialog {
                     }
                 })
                 .create();
+        // probably should be called after show method
         dialog.getWindow().setSoftInputMode(
                 WindowManager.LayoutParams.SOFT_INPUT_STATE_VISIBLE);
         return dialog;

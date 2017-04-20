@@ -1,0 +1,32 @@
+
+Android Rules:
+You cannot nest Fragments in other Fragments with XML-Layouts.
+You have to add them with code.
+To insert a Fragment into another Fragment you have to use a special FragmentManager - a child FragmentManager.
+You can get it from the parent Fragment.
+
+
+
+Android project file structure TIPS:
+
+I. Sensitive data
+There are always some sensitive data in your project.
+Whether it be keystore’s password or third-party API secret key, you want to keep it out of version control system.
+You can put it in gradle.properties file of your project like below:
+
+KEYSTORE_PASSWORD=<your keystore's password>
+KEYSTORE_FILE=<your keystore file>
+KEYSTORE_ALIAS=<your keystore's alias>
+
+Later you can use those properties in build.gradle file:
+
+signingConfigs {
+    release {
+        storeFile file(KEYSTORE_FILE)
+        storePassword KEYSTORE_PASSWORD
+        keyAlias KEYSTORE_ALIAS
+        keyPassword KEYSTORE_PASSWORD
+    }
+}
+
+Of course, you need to make sure not committing this file to VCS. But if you are lazy like me, you can put all those properties to gradle.properties file in GRADLE_HOME folder.

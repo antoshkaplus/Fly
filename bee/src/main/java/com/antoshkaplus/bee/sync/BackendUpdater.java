@@ -9,7 +9,7 @@ import java.util.UUID;
  */
 
 // make it interface
-public class BackendUpdater <LocalUpdates, ServerRecords> {
+public abstract class BackendUpdater <LocalUpdates, ServerRecords> {
 
     // all updates are considered local unless opposite specified
 
@@ -44,45 +44,19 @@ public class BackendUpdater <LocalUpdates, ServerRecords> {
         clearUpdateId();
     }
 
-    private void clearUpdateId() {
-    }
+    abstract void clearUpdateId();
 
-    private void resetUpdates(LocalUpdates updates) {
-    }
+    // cleans up all updates except those in the argument
+    abstract void resetUpdates(LocalUpdates updates);
 
-    private void updateRemote(LocalUpdates updates) {
-    }
-
-    private void resolveConflicts(LocalUpdates updates, ServerRecords serverRecords) {
-
-    }
-
-    private ServerRecords getServerRecords(LocalUpdates updates) {
-        throw new RuntimeException();
-    }
-
-    private void extractUpdates() {
-    }
-
-    private boolean extractedUpdatesEmpty() {
-        return true;
-    }
-
-    protected void prepareUpdates() {
-    }
-
-    protected UUID generateUpdateId() {
-        throw new RuntimeException();
-    }
-
-    protected UUID retrieveUpdateId() {
-        throw new RuntimeException();
-    }
-
-    protected LocalUpdates getUpdates() {
-        throw new RuntimeException();
-    }
-
-    protected void prepare() {
-    }
+    //
+    abstract void updateRemote(LocalUpdates updates);
+    abstract void resolveConflicts(LocalUpdates updates, ServerRecords serverRecords);
+    abstract ServerRecords getServerRecords(LocalUpdates updates);
+    abstract void extractUpdates();
+    abstract boolean extractedUpdatesEmpty();
+    abstract UUID generateUpdateId();
+    abstract UUID retrieveUpdateId();
+    abstract LocalUpdates getUpdates();
+    abstract void prepare();
 }
