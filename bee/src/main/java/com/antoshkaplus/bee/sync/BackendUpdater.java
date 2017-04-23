@@ -50,7 +50,7 @@ public abstract class BackendUpdater <LocalUpdates, ServerRecords> {
     abstract void resetUpdates(LocalUpdates updates);
 
     //
-    abstract void updateRemote(LocalUpdates updates);
+    abstract LocalUpdates updateRemote(LocalUpdates updates);
     abstract void resolveConflicts(LocalUpdates updates, ServerRecords serverRecords);
     abstract ServerRecords getServerRecords(LocalUpdates updates);
     abstract void extractUpdates();
