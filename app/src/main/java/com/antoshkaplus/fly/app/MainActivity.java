@@ -5,6 +5,7 @@ import android.app.Activity;
 import android.app.ListActivity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.PersistableBundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.ListView;
@@ -23,19 +24,28 @@ public class MainActivity extends Activity implements PermissionHelper.Permissio
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        PermissionHelper helper = (PermissionHelper) getFragmentManager()
+                .findFragmentByTag(PermissionHelper.TAG);
+        if (helper == null) {
+            helper = new PermissionHelper();
+            getFragmentManager().beginTransaction()
+                    .add(helper, PermissionHelper.TAG)
+                    .commit();
+        }
     }
 
-    void showListSearch(View view) {
+    public void showListSearch(View view) {
         Intent i = new Intent(this, ListSearchActivity.class);
         startActivity(i);
     }
 
-    void checkPermissions() {
-        PermissionHelper helper = new PermissionHelper();
-        Bundle b = new Bundle();
-        b.putStringArray("Permissions", new String[]{Manifest.permission.GET_ACCOUNTS});
-        helper.setArguments(b);
+    public void checkPermissions(View view) {
+        // has to reattach because of retain instance true flag
+        PermissionHelper helper = (PermissionHelper) getFragmentManager()
+                .findFragmentByTag(PermissionHelper.TAG);
+        helper.setPermissions(new String[]{Manifest.permission.GET_ACCOUNTS});
         helper.setCallback(this);
+
         helper.checkPermissions();
     }
 

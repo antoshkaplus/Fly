@@ -18,10 +18,14 @@ public class PermissionHelper extends Fragment {
 
 
     private static final int REQUEST_PERMISSIONS = 10;
-    public static final String TAG = "CamMicPerm";
+    public static final String TAG = "PermissionHelper";
 
     private PermissionCallback mCallback;
     private static boolean sCameraMicPermissionDenied;
+
+    public void setPermissions(String[] permissions) {
+        this.permissions = permissions;
+    }
 
     private String[] permissions = new String[0];
 
@@ -62,10 +66,10 @@ public class PermissionHelper extends Fragment {
 
     public void checkPermissions() {
         Activity a = getActivity();
-        if (Arrays.stream(permissions).allMatch(s -> a.checkSelfPermission(s) == PackageManager.PERMISSION_GRANTED)) {
+        if (all(permissions)) {
             mCallback.onPermissionGranted();
         } else {
-            requestPermissions(new String[]{Manifest.permission.CAMERA, Manifest.permission.RECORD_AUDIO}, REQUEST_PERMISSIONS);
+            requestPermissions(permissions, REQUEST_PERMISSIONS);
         }
     }
 
@@ -77,7 +81,7 @@ public class PermissionHelper extends Fragment {
                                            int[] grantResults) {
 
         if (requestCode == REQUEST_PERMISSIONS) {
-            if (Arrays.stream(grantResults).allMatch(s -> s == PackageManager.PERMISSION_GRANTED)) {
+            if (all(grantResults)) {
                 mCallback.onPermissionGranted();
             } else {
                 Log.i("BaseActivity", "LOCATION permission was NOT granted.");
@@ -87,6 +91,25 @@ public class PermissionHelper extends Fragment {
         } else {
             super.onRequestPermissionsResult(requestCode, permissions, grantResults);
         }
+    }
+
+    private boolean all(String[] ss) {
+        Activity a = getActivity();
+        for (String s : ss) {
+            if (a.checkSelfPermission(s) != PackageManager.PERMISSION_GRANTED) {
+                return false;
+            }
+        }
+        return true;
+    }
+
+    private boolean all(int[] rr) {
+        for (Integer r : rr) {
+            if (r != PackageManager.PERMISSION_GRANTED) {
+                return false;
+            }
+        }
+        return true;
     }
 
     public void setCallback(PermissionCallback mCallback) {
