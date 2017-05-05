@@ -1,4 +1,4 @@
-package com.antoshkaplus.ant;
+package com.antoshkaplus.app;
 
 import android.app.Application;
 import android.test.ApplicationTestCase;

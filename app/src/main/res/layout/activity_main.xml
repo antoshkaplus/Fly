@@ -11,6 +11,11 @@
         android:onClick="showListSearch"
         />
 
-
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/main_activity__check_permissions"
+        android:onClick="checkPermissions"
+        />
 
 </LinearLayout>
