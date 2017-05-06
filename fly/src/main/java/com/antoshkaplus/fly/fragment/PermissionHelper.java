@@ -49,16 +49,6 @@ public class PermissionHelper extends Fragment {
     }
 
     @Override
-    public void onAttach(Context activity) {
-        super.onAttach(activity);
-        if (activity instanceof PermissionCallback) {
-            mCallback = (PermissionCallback) activity;
-        } else {
-            throw new IllegalArgumentException("activity must extend BaseActivity and implement LocationHelper.LocationCallback");
-        }
-    }
-
-    @Override
     public void onDetach() {
         super.onDetach();
         mCallback = null;
