@@ -7,9 +7,7 @@ package com.antoshkaplus.bee.backend;
 public class ResourceBoolean {
     public boolean value;
 
-    ResourceBoolean(boolean value) {
+    public ResourceBoolean(boolean value) {
         this.value = value;
     }
-
-
 }
